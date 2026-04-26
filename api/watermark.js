@@ -1,12 +1,6 @@
-import { v2 as cloudinary } from 'cloudinary';
-import { IncomingForm } from 'formidable';
-import fs from 'fs';
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+const cloudinary = require('cloudinary').v2;
+const formidable = require('formidable');
+const fs = require('fs');
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -14,7 +8,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -22,12 +16,12 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const form = new IncomingForm({ maxFileSize: 100 * 1024 * 1024 });
+  const form = new formidable.IncomingForm({ maxFileSize: 100 * 1024 * 1024 });
 
   form.parse(req, async (err, fields, files) => {
     if (err) return res.status(400).json({ error: 'Failed to parse upload' });
 
-    const file = files.video?.[0] || files.video;
+    const file = Array.isArray(files.video) ? files.video[0] : files.video;
     if (!file) return res.status(400).json({ error: 'No video file found' });
 
     const filePath = file.filepath || file.path;
@@ -52,7 +46,7 @@ export default async function handler(req, res) {
         ],
       });
 
-      fs.unlinkSync(filePath);
+      try { fs.unlinkSync(filePath); } catch(e) {}
 
       return res.status(200).json({
         success: true,
@@ -64,4 +58,4 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Video processing failed', detail: uploadError.message });
     }
   });
-}
+};
