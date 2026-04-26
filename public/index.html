@@ -167,7 +167,7 @@ formData.append('folder', 'watermarked');
 
   } catch(e) {
     status.className = 'status error';
-    status.textContent = 'Unexpected error — please try again.';
+    status.textContent = 'Error: ' + e.message + ' | Response: ' + xhr.responseText.substring(0, 200);
     progressFill.style.width = '0%';
   }
   btn.disabled = false;
