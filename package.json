@@ -7,6 +7,6 @@
     "formidable": "^3.5.1"
   },
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   }
 }
