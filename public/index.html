@@ -6,18 +6,16 @@
   <title>Maximum.Creations — Watermark Tool</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       min-height: 100vh;
       background: #0d0d0d;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: Georgia, 'Times New Roman', serif;
+      font-family: Georgia, serif;
       color: #c9a84c;
       padding: 24px;
     }
-
     .card {
       width: 100%;
       max-width: 520px;
@@ -26,147 +24,25 @@
       padding: 48px 40px;
       text-align: center;
     }
-
-    .brand {
-      font-size: 11px;
-      letter-spacing: 0.3em;
-      color: #c9a84c88;
-      margin-bottom: 8px;
-    }
-
-    h1 {
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
-      color: #c9a84c;
-    }
-
-    .divider {
-      width: 60px;
-      height: 0.5px;
-      background: #c9a84c55;
-      margin: 20px auto;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: #c9a84c77;
-      letter-spacing: 0.05em;
-      margin-bottom: 36px;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    .drop-zone {
-      border: 0.5px dashed #c9a84c55;
-      border-radius: 2px;
-      padding: 36px 20px;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .drop-zone:hover, .drop-zone.dragover {
-      border-color: #c9a84c;
-      background: #c9a84c08;
-    }
-
-    .drop-zone input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-    }
-
-    .drop-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-      opacity: 0.6;
-    }
-
-    .drop-text {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      color: #c9a84c99;
-      font-family: Arial, sans-serif;
-    }
-
-    .file-name {
-      font-size: 12px;
-      color: #c9a84c;
-      margin-top: 10px;
-      font-family: Arial, sans-serif;
-      letter-spacing: 0.04em;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      background: transparent;
-      border: 0.5px solid #c9a84c;
-      color: #c9a84c;
-      font-family: Georgia, serif;
-      font-size: 13px;
-      letter-spacing: 0.2em;
-      cursor: pointer;
-      transition: background 0.2s;
-      border-radius: 2px;
-    }
-
+    .brand { font-size: 11px; letter-spacing: 0.3em; color: #c9a84c88; margin-bottom: 8px; }
+    h1 { font-size: 22px; font-weight: 400; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .divider { width: 60px; height: 0.5px; background: #c9a84c55; margin: 20px auto; }
+    .subtitle { font-size: 13px; color: #c9a84c77; letter-spacing: 0.05em; margin-bottom: 36px; font-family: Arial, sans-serif; line-height: 1.6; }
+    .drop-zone { border: 0.5px dashed #c9a84c55; border-radius: 2px; padding: 36px 20px; cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 24px; position: relative; }
+    .drop-zone:hover, .drop-zone.dragover { border-color: #c9a84c; background: #c9a84c08; }
+    .drop-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+    .drop-icon { font-size: 28px; margin-bottom: 12px; opacity: 0.6; }
+    .drop-text { font-size: 13px; letter-spacing: 0.08em; color: #c9a84c99; font-family: Arial, sans-serif; }
+    .file-name { font-size: 12px; color: #c9a84c; margin-top: 10px; font-family: Arial, sans-serif; }
+    .btn { width: 100%; padding: 14px; background: transparent; border: 0.5px solid #c9a84c; color: #c9a84c; font-family: Georgia, serif; font-size: 13px; letter-spacing: 0.2em; cursor: pointer; transition: background 0.2s; border-radius: 2px; }
     .btn:hover:not(:disabled) { background: #c9a84c14; }
     .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-    .status {
-      margin-top: 24px;
-      font-size: 12px;
-      font-family: Arial, sans-serif;
-      letter-spacing: 0.06em;
-      min-height: 20px;
-      color: #c9a84c88;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 1px;
-      background: #c9a84c22;
-      margin-top: 12px;
-      display: none;
-      border-radius: 1px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: #c9a84c;
-      width: 0%;
-      transition: width 0.3s;
-      border-radius: 1px;
-    }
-
-    .download-section {
-      margin-top: 28px;
-      display: none;
-    }
-
-    .download-btn {
-      display: inline-block;
-      padding: 14px 32px;
-      border: 0.5px solid #c9a84c;
-      color: #c9a84c;
-      text-decoration: none;
-      font-family: Georgia, serif;
-      font-size: 13px;
-      letter-spacing: 0.2em;
-      transition: background 0.2s;
-      border-radius: 2px;
-    }
-
+    .status { margin-top: 24px; font-size: 12px; font-family: Arial, sans-serif; letter-spacing: 0.06em; min-height: 20px; color: #c9a84c88; }
+    .progress-bar { width: 100%; height: 1px; background: #c9a84c22; margin-top: 12px; display: none; border-radius: 1px; overflow: hidden; }
+    .progress-fill { height: 100%; background: #c9a84c; width: 0%; transition: width 0.4s; }
+    .download-section { margin-top: 28px; display: none; }
+    .download-btn { display: inline-block; padding: 14px 32px; border: 0.5px solid #c9a84c; color: #c9a84c; text-decoration: none; font-family: Georgia, serif; font-size: 13px; letter-spacing: 0.2em; transition: background 0.2s; border-radius: 2px; }
     .download-btn:hover { background: #c9a84c14; }
-
     .error { color: #e05555; }
     .success { color: #c9a84c; }
   </style>
@@ -186,14 +62,8 @@
       <div class="file-name" id="fileName"></div>
     </div>
 
-    <button class="btn" id="uploadBtn" disabled onclick="uploadVideo()">
-      APPLY WATERMARK
-    </button>
-
-    <div class="progress-bar" id="progressBar">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
-
+    <button class="btn" id="uploadBtn" disabled onclick="uploadVideo()">APPLY WATERMARK</button>
+    <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
     <div class="status" id="status"></div>
 
     <div class="download-section" id="downloadSection">
@@ -204,6 +74,9 @@
   </div>
 
   <script>
+    const CLOUD_NAME = 'dty2hrdti';
+    const UPLOAD_PRESET = 'maximum_watermark';
+
     const input = document.getElementById('videoInput');
     const btn = document.getElementById('uploadBtn');
     const status = document.getElementById('status');
@@ -245,40 +118,63 @@
       progressBar.style.display = 'block';
       progressFill.style.width = '0%';
       status.className = 'status';
-      status.textContent = 'Uploading your video...';
+      status.textContent = 'Uploading to Cloudinary...';
 
       const formData = new FormData();
-      formData.append('video', file);
-
-      let fakeProgress = 0;
-      const ticker = setInterval(() => {
-        fakeProgress = Math.min(fakeProgress + Math.random() * 8, 85);
-        progressFill.style.width = fakeProgress + '%';
-      }, 400);
+      formData.append('file', file);
+      formData.append('upload_preset', UPLOAD_PRESET);
+      formData.append('folder', 'watermarked');
+      formData.append('transformation', JSON.stringify([
+        {
+          overlay: 'maximum_creations_watermark_baunr9',
+          gravity: 'south_east',
+          x: 20,
+          y: 20,
+          width: 300,
+          opacity: 80
+        },
+        { flags: 'layer_apply' }
+      ]));
 
       try {
-        const res = await fetch('/api/watermark', { method: 'POST', body: formData });
-        clearInterval(ticker);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/video/upload`);
 
-        if (!res.ok) {
-          const err = await res.json();
-          throw new Error(err.error || 'Something went wrong');
-        }
+        xhr.upload.onprogress = e => {
+          if (e.lengthComputable) {
+            const pct = Math.round((e.loaded / e.total) * 80);
+            progressFill.style.width = pct + '%';
+            status.textContent = `Uploading... ${pct}%`;
+          }
+        };
 
-        const data = await res.json();
-        progressFill.style.width = '100%';
-        status.className = 'status success';
-        status.textContent = 'Watermark applied successfully.';
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            progressFill.style.width = '100%';
+            status.className = 'status success';
+            status.textContent = 'Watermark applied successfully.';
+            downloadLink.href = data.secure_url;
+            downloadSection.style.display = 'block';
+          } else {
+            const err = JSON.parse(xhr.responseText);
+            throw new Error(err.error?.message || 'Upload failed');
+          }
+          btn.disabled = false;
+        };
 
-        downloadLink.href = data.url;
-        downloadLink.textContent = 'DOWNLOAD VIDEO';
-        downloadSection.style.display = 'block';
+        xhr.onerror = function() {
+          status.className = 'status error';
+          status.textContent = 'Upload failed — please try again.';
+          progressFill.style.width = '0%';
+          btn.disabled = false;
+        };
+
+        xhr.send(formData);
       } catch (err) {
-        clearInterval(ticker);
-        progressFill.style.width = '0%';
         status.className = 'status error';
         status.textContent = 'Error: ' + err.message;
-      } finally {
+        progressFill.style.width = '0%';
         btn.disabled = false;
       }
     }
