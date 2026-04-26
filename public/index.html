@@ -137,20 +137,41 @@ formData.append('folder', 'watermarked');
           }
         };
 
-        xhr.onload = function() {
-          if (xhr.status === 200) {
-            const data = JSON.parse(xhr.responseText);
-            progressFill.style.width = '100%';
-            status.className = 'status success';
-            status.textContent = 'Watermark applied successfully.';
-            downloadLink.href = watermarkedUrl;
-            downloadSection.style.display = 'block';
-          } else {
-            const err = JSON.parse(xhr.responseText);
-            throw new Error(err.error?.message || 'Upload failed');
-          }
-          btn.disabled = false;
-        };
+      xhr.onload = function() {
+  try {
+    const data = JSON.parse(xhr.responseText);
+    if (xhr.status !== 200 || !data.public_id) {
+      status.className = 'status error';
+      status.textContent = 'Upload error: ' + (data.error?.message || 'Unknown error');
+      progressFill.style.width = '0%';
+      btn.disabled = false;
+      return;
+    }
+
+    status.textContent = 'Applying watermark...';
+    progressFill.style.width = '95%';
+
+    const watermarkedUrl =
+      `https://res.cloudinary.com/${CLOUD_NAME}/video/upload/` +
+      `l_${WATERMARK_PUBLIC_ID},g_south_east,x_20,y_20,w_300,o_80/fl_layer_apply/` +
+      `${data.public_id}.mp4`;
+
+    console.log('Watermarked URL:', watermarkedUrl);
+
+    progressFill.style.width = '100%';
+    status.className = 'status success';
+    status.textContent = 'Watermark applied successfully.';
+    downloadLink.href = watermarkedUrl;
+    downloadLink.textContent = 'DOWNLOAD VIDEO';
+    downloadSection.style.display = 'block';
+
+  } catch(e) {
+    status.className = 'status error';
+    status.textContent = 'Unexpected error — please try again.';
+    progressFill.style.width = '0%';
+  }
+  btn.disabled = false;
+};
 
         xhr.onerror = function() {
           status.className = 'status error';
