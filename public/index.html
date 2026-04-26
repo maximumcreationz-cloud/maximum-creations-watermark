@@ -120,7 +120,8 @@
       status.className = 'status';
       status.textContent = 'Uploading to Cloudinary...';
 
-     formData.append('file', file);
+    const formData = new FormData();
+formData.append('file', file);
 formData.append('upload_preset', UPLOAD_PRESET);
 formData.append('folder', 'watermarked');
 
