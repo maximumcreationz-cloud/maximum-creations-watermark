@@ -143,7 +143,7 @@ formData.append('folder', 'watermarked');
             progressFill.style.width = '100%';
             status.className = 'status success';
             status.textContent = 'Watermark applied successfully.';
-            downloadLink.href = data.secure_url;
+            downloadLink.href = watermarkedUrl;
             downloadSection.style.display = 'block';
           } else {
             const err = JSON.parse(xhr.responseText);
