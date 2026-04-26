@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/watermark.js": {
+      "maxDuration": 60
+    }
+  },
+  "api": {
+    "bodySizeLimit": "100mb"
+  }
+}
